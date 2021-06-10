@@ -23,17 +23,21 @@ module.exports = {
                 exclude: /node_modules/
             },
             {
-                test: /\.css$/,
-                exclude: /node_modules/,
+                test: /\.(sass|less|css)$/,
                 use: [
-                    { 
-                        loader: 'css-loader',
-                        options: {
-                            sourceMap: true
-                        }
-                     }
-                ]
-            }
+                  "style-loader",
+                  "css-loader",
+                  "sass-loader",
+                ],
+            },
+            {
+                test: /\.s[ac]ss$/i,
+                use: [
+                  "style-loader",
+                  "css-loader",
+                  "sass-loader",
+                ],
+              },
         ]
     },
     plugins: [
