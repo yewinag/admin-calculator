@@ -2,7 +2,7 @@
   "name": "rabbit-price-calculator",
   "version": "1.0.0",
   "main": "index.js",
-  "author": "yewin",
+  "author": "yewin<yewinaung831@gmail.com>",
   "license": "MIT",
   "scripts": {
     "start": "webpack-dev-server --open"
