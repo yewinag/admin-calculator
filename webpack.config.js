@@ -36,7 +36,7 @@ module.exports = {
                   "style-loader",
                   "css-loader",
                   "sass-loader",
-                ],
+                ]
             },
             {
                 test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
@@ -51,7 +51,7 @@ module.exports = {
                 ]
               }
         ]
-    },
+  },
     plugins: [
         new HtmlWebpackPlugin({
             template: __dirname + '/public/index.html',

@@ -1,8 +1,9 @@
 import React from 'react'
 import { CardFooter } from 'reactstrap';
+import './footer.scss';
 function Footer() {
     return (
-        <div className="fixed-bottom">
+        <div className="fixed-bottom footer">
             <CardFooter>powered by @rabbit</CardFooter>
         </div>
     )
