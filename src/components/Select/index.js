@@ -12,8 +12,8 @@ function Select() {
 
   const toggle = () => setOpen(!open);
   return (
-    <ButtonDropdown isOpen={open} toggle={toggle}>
-      <DropdownToggle className="select-btn" caret>Select Product</DropdownToggle>
+    <ButtonDropdown className="select-layout" isOpen={open} toggle={toggle}>
+      <DropdownToggle className="select-btn" caret>Select Product <span className="icon"/></DropdownToggle>
       <DropdownMenu>
         <DropdownItem>Product 1</DropdownItem>
         <DropdownItem>Product 2</DropdownItem>

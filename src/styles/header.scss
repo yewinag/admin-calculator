@@ -1,7 +1,8 @@
+@import './index.scss';
 .header{
     border-bottom: 1px solid #eee;
     .title{
-        color: #848484;
+        color: $primary-color;
     }
     .nav-list{
         float: right;

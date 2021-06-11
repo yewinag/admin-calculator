@@ -1,11 +1,12 @@
 import React from "react";
 import { Table, Row, Col, Button } from "reactstrap";
+import "../../styles/result-table.scss";
 
 function ResultTable() {
   return (
     <Row>
       <Col md={2}>
-        <label>Locations</label>
+        <p>Locations</p>
       </Col>
       <Col md={10}>
         <Table>
@@ -14,8 +15,8 @@ function ResultTable() {
               <th>Place</th>
               <th>Units</th>
               <th>Cost</th>
-              <th>
-                <Button>ADD</Button>
+              <th className="header-action">
+                <Button className="add-btn" size="sm">ADD</Button>
               </th>
             </tr>
           </thead>
@@ -24,8 +25,8 @@ function ResultTable() {
               <td>Mark</td>
               <td>Otto</td>
               <td>@mdo</td>
-              <td>abads</td>
-            </tr>            
+              <td><Button className="close-btn" close></Button></td>
+            </tr>
           </tbody>
         </Table>
       </Col>

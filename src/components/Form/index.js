@@ -6,19 +6,19 @@ import "../../styles/form.scss";
 function Form() {
   return (
     <>
-      <Row>        
-        <Col md={2}>
-          <p for="exampleEmail">Products</p>
+      <Row className="mb-3">        
+        <Col md={4}>
+          <p>Products</p>
         </Col>
-        <Col md={10}>
+        <Col md={8}>
           <Select />
         </Col>
       </Row>
       <Row>        
-        <Col md={2}>
-          <p for="exampleEmail">Date</p>
+        <Col md={4}>
+          <p>Date</p>
         </Col>
-        <Col md={10}>
+        <Col md={8}>
           <DatePicker />
         </Col>
       </Row>

@@ -9,6 +9,7 @@ import {
   NavLink
 } from "reactstrap";
 import '../../styles/header.scss';
+import logo from '../../assets/icons/logo.png';
 
 function Header(props) {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,7 +19,9 @@ function Header(props) {
     <div className="container-fluid header">
       <Navbar light expand="md">
         <div className="col-md-6">
-          <NavbarBrand className="title" href="/">Rabbit</NavbarBrand>
+          <NavbarBrand className="title" href="/">
+            <img src={logo} />
+          </NavbarBrand>
         </div>
         <div className="col-md-6">
           <NavbarToggler onClick={toggle} />

@@ -8,6 +8,7 @@ import { SingleDatePicker } from "react-dates";
 import { HORIZONTAL_ORIENTATION } from "../../constants";
 import "react-dates/lib/css/_datepicker.css";
 import "react-dates/initialize";
+import "../../styles/datepicker.scss";
 const dateFormat = "DD MMM YYYY";
 
 const propTypes = {
@@ -50,6 +51,7 @@ class DatePicker extends React.Component {
     const props = omit(this.props, ["autoFocus", "initialDate"]);
 
     return (
+    <>
       <SingleDatePicker
         {...props}
         id="date_input"
@@ -60,6 +62,8 @@ class DatePicker extends React.Component {
         readOnly={true}        
         isOutsideRange={this.isOutsideRange}
       />
+      <span className="icon" />
+    </>
     );
   }
 }

@@ -1,5 +1,14 @@
+@import "./index.scss";
+
 .home{
     background-color:#fff;
+    .submit-btn{
+        border-radius: 0;
+        background: $secondary-color;
+        border-color: $secondary-color;
+        font-size: 14px;
+        padding: 4px 20px;
+    }
 }
 @media only screen and (max-width: 991px) {
     .m-layout{     

@@ -1,12 +1,13 @@
 import React from "react";
-import { Card, CardTitle, CardText } from 'reactstrap';
+import { Card, CardText } from 'reactstrap';
+import '../../styles/total-results.scss';
+
 function TotalResults() {
   return (
-    <Card body className="result-card">
-        <CardTitle tag="h5">Results</CardTitle>
-        <CardText>Costs</CardText>
-        <CardText>Units</CardText>
-    </Card>
+    <div>
+        <p>Costs</p>
+        <p>Units</p>
+    </div>
   );
 }
 

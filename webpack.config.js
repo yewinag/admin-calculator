@@ -1,61 +1,65 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-    entry: './src/index.js',
-    output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename: 'bundle.js',
-        chunkFilename: '[id].js',
-        publicPath: ''
-    },
-    devServer: {
-        port: 3000
-    },
-    resolve: {
-        extensions: ['.js', '.jsx']
-    },
-    module: {
-        rules: [
-            {
-                test: /\.js$/,
-                loader: 'babel-loader',
-                exclude: /node_modules/
-            },
-            {
-                test: /\.(sass|less|css)$/,
-                use: [
-                  "style-loader",
-                  "css-loader",
-                  "sass-loader",
-                ],
-            },
-            {
-                test: /\.s[ac]ss$/i,
-                use: [
-                  "style-loader",
-                  "css-loader",
-                  "sass-loader",
-                ]
-            },
-            {
-                test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-                use: [
-                  {
-                    loader: 'file-loader',
-                    options: {
-                      name: '[name].[ext]',
-                      outputPath: 'fonts/'
-                    }
-                  }
-                ]
-              }
-        ]
+  entry: "./src/index.js",
+  output: {
+    path: path.resolve(__dirname, "dist"),
+    filename: "bundle.js",
+    chunkFilename: "[id].js",
+    publicPath: "",
   },
-    plugins: [
-        new HtmlWebpackPlugin({
-            template: __dirname + '/public/index.html',
-            filename: 'index.html'            
-        })
+  devServer: {
+    port: 3000,
+  },
+  resolve: {
+    extensions: [".js", ".jsx"],
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        loader: "babel-loader",
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.(sass|less|css)$/,
+        use: ["style-loader", "css-loader", "sass-loader"],
+      },
+      {
+        test: /\.s[ac]ss$/i,
+        use: ["style-loader", "css-loader", "sass-loader"],
+      },
+      {
+        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "[name].[ext]",
+              outputPath: "fonts/",
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: "[name].[ext]",
+              outputPath: "src/assets/icons",
+            },
+          },
+        ]
+      }
     ]
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: __dirname + "/public/index.html",
+      filename: "index.html",
+    }),
+  ],
 };
