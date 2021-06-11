@@ -1,26 +1,28 @@
 import React from "react";
-import { FormGroup, Input, Label } from "reactstrap";
-import '../../styles/form.scss';
+import { FormGroup, Input, Label, Row, Col } from "reactstrap";
+import Select from "../Select";
+import DatePicker from "../DatePicker";
+import "../../styles/form.scss";
 function Form() {
   return (
-    <div className="form">
-      <FormGroup>
-        <Label for="exampleEmail">Products</Label>
-        <Input
-          type="text"
-          name="text"          
-          placeholder="with a placeholder"
-        />
-      </FormGroup>
-      <FormGroup>
-        <Label for="exampleEmail">Date</Label>
-        <Input
-          type="text"
-          name="text"
-          placeholder="with a placeholder"
-        />
-      </FormGroup>
-    </div>
+    <>
+      <Row>        
+        <Col md={2}>
+          <p for="exampleEmail">Products</p>
+        </Col>
+        <Col md={10}>
+          <Select />
+        </Col>
+      </Row>
+      <Row>        
+        <Col md={2}>
+          <p for="exampleEmail">Date</p>
+        </Col>
+        <Col md={10}>
+          <DatePicker />
+        </Col>
+      </Row>
+    </>
   );
 }
 

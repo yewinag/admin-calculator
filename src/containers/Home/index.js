@@ -14,7 +14,7 @@ function Home() {
       <Header />
       <Container>
         <Row>
-          <Col md={6}>
+          <Col md={8}>
             <Form />
             <ResultTable />
             <Row className="m-layout">
