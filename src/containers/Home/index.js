@@ -5,7 +5,7 @@ import Form from "../../components/Form";
 import ResultTable from "../../components/ResultTable";
 import TotalResults from "../../components/TotalResults";
 
-import { Container, Row, Col, Button } from 'reactstrap';
+import { Container, Row, Col, Button } from "reactstrap";
 
 import "../../styles/home.scss";
 function Home() {
@@ -14,13 +14,19 @@ function Home() {
       <Header />
       <Container>
         <Row>
-        <Col md={6}>
-          <Form />
-          <ResultTable />
-          <TotalResults />
-        </Col>
+          <Col md={6}>
+            <Form />
+            <ResultTable />
+            <Row className="m-layout">
+              <Col md={12} xs={9} className="m-col-left">
+                <TotalResults />
+              </Col>
+              <Col md={12} xs={3} className="m-col-right">
+                <Button className="submit-btn" color="success">Submit</Button>
+              </Col>
+            </Row>            
+          </Col>
         </Row>
-        <Button color="success">Submit</Button>
       </Container>
       <Footer />
     </div>
