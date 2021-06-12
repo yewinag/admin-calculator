@@ -27,6 +27,7 @@ function Map(props) {
             location={location}
             dispatch={props.dispatch}
             toggle={props.toggle}
+            selected={props.selected} // selected state from reducer
           />
         ))}
       </GoogleMapReact>

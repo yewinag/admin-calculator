@@ -2,7 +2,7 @@ import React, { useReducer, useEffect } from "react";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 import Form from "../../components/Form";
-import ResultTable from "../../components/ResultTable";
+import LocationTable from "../../components/LocationTable";
 import TotalResults from "../../components/TotalResults";
 
 import { Container, Row, Col, Button, Card } from "reactstrap";
@@ -25,8 +25,11 @@ const initialState = {
   },
   selected: {
     product: null,
-    location: [],
+    location: null,
     date: null,
+  },
+  selectedLocationList: {
+    data: [],
   },
 };
 
@@ -97,7 +100,28 @@ function reducer(state, action) {
           selected: {
             product: state.selected.product,
             date: state.selected.date,
-            location: [...state.selected.location, action.payload],
+            location: action.payload,
+          },
+        },
+      };
+    case "ADD_LOCATION_ITEM":
+      return {
+        ...state,
+        ...{
+          selectedLocationList: {
+            data: [...state.selectedLocationList.data, action.payload],
+          },
+        },
+      };
+    case "REMOVE_SELECTED_LOCATION_ITEM":
+      const res = state.selectedLocationList.data.filter(
+        (item) => item.id != action.payload
+      );
+      return {
+        ...state,
+        ...{
+          selectedLocationList: {
+            data: res,
           },
         },
       };
@@ -156,11 +180,13 @@ function Home() {
           <Col md={8}>
             <Card className="result-card">
               <ResourceContext.Provider value={{ state, dispatch }}>
-                <ResultTable />
+                <LocationTable />
               </ResourceContext.Provider>
               <Row className="m-layout">
                 <Col md={12} xs={9} className="m-col-left">
-                  <TotalResults />
+                  <ResourceContext.Provider value={{state}}>
+                    <TotalResults />
+                  </ResourceContext.Provider>
                 </Col>
                 <Col md={12} xs={3} className="m-col-right">
                   <Button className="submit-btn">Submit</Button>

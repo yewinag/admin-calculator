@@ -1,15 +1,16 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Table, Row, Col, Button, Modal } from "reactstrap";
 import Map from "../Map";
 import { ResourceContext } from "../../containers/Home";
+import LocationItem from "../LocationItem";
 import "../../styles/result-table.scss";
 
-function ResultTable() {
+function LocationTable() {
   const [modal, setModal] = useState(false);
   const resources = useContext(ResourceContext);
   const toggle = () => setModal(!modal);
 
-  const { locations } = resources.state;
+  const { locations, selected, selectedLocationList } = resources.state;
   const { dispatch } = resources;
 
   return (
@@ -33,23 +34,24 @@ function ResultTable() {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>
-                  <Button className="close-btn" close></Button>
-                </td>
-              </tr>
+              {selectedLocationList.data.length > 0 &&
+                selectedLocationList.data.map((item, index) => (
+                  <LocationItem dispatch={dispatch} item={item} key={index} />
+                ))}
             </tbody>
           </Table>
         </Col>
       </Row>
       <Modal isOpen={modal} toggle={toggle}>
-        <Map locations={locations} dispatch={dispatch} toggle={toggle} />
+        <Map
+          selected={selected}
+          locations={locations}
+          dispatch={dispatch}
+          toggle={toggle}
+        />
       </Modal>
     </>
   );
 }
 
-export default ResultTable;
+export default LocationTable;

@@ -1,13 +1,29 @@
 @import "./index.scss";
 
+.total-result-card{
+  .result-item{
+    display: flex;
+    p{
+      flex: 1;
+      font-weight: 500;
+      color: $primary-dark-color;
+      font-size: large;
+    }
+  }
+}
 @media only screen and (max-width: 991px) {
   .total-result-card {
     background: $primary-bg-color;
     padding: 10px 20px;
     border: 1px solid $primary-gray-color;
-    p{
+    .result-item{
+      display: flex;
+      p{
+        flex: 1;
         font-weight: 500;
         color: $primary-dark-color;
-    }
+        font-size: large;
+      }
+    }    
   }
 }

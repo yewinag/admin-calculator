@@ -9,7 +9,7 @@ import { HORIZONTAL_ORIENTATION } from "../../constants";
 import "react-dates/lib/css/_datepicker.css";
 import "react-dates/initialize";
 import "../../styles/datepicker.scss";
-const dateFormat = "DD MMM YYYY";
+import { dateFormat } from "../../constants";
 
 const propTypes = {
   autoFocus: PropTypes.bool,
@@ -19,7 +19,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  initialDate: moment().add(1, "days"),
+  initialDate: moment(),
   placeholder: "Date",
   orientation: HORIZONTAL_ORIENTATION,
   numberOfMonths: 1,
