@@ -15,8 +15,11 @@ function Header(props) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
+  // const { state, dispatch } = useContext(CountContext);
+
+  // const { count } = state;
   return (
-    <div className="container-fluid header">
+    <div className="container-fluid header">      
       <Navbar light expand="md">
         <div className="col-md-6">
           <NavbarBrand className="title" href="/">

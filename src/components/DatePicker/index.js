@@ -48,7 +48,7 @@ class DatePicker extends React.Component {
     day.isAfter(moment().add(8, "days")) || day.isBefore(); // allow only next 7 days
   render() {
     const { focused, date } = this.state;
-    const props = omit(this.props, ["autoFocus", "initialDate"]);
+    const props = omit(this.props, ["autoFocus", "initialDate", "dispatch"]);
 
     return (
     <>
