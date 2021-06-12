@@ -12,6 +12,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "bootstrap": "^5.0.1",
+    "google-map-react": "^2.1.9",
     "moment": "^2.29.1",
     "node-sass": "^6.0.0",
     "prop-types": "^15.7.2",

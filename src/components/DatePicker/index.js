@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import moment from "moment";
 import omit from "lodash/omit";
-import {polyfill} from 'react-lifecycles-compat';
-import PropTypes from 'prop-types';
-import momentPropTypes from 'react-moment-proptypes';
+import { polyfill } from "react-lifecycles-compat";
+import PropTypes from "prop-types";
+import momentPropTypes from "react-moment-proptypes";
 import { SingleDatePicker } from "react-dates";
 import { HORIZONTAL_ORIENTATION } from "../../constants";
 import "react-dates/lib/css/_datepicker.css";
@@ -12,18 +12,12 @@ import "../../styles/datepicker.scss";
 const dateFormat = "DD MMM YYYY";
 
 const propTypes = {
-    autoFocus: PropTypes.bool,
-    initialDate: momentPropTypes.momentObj,
-  
-    ...omit(DatePicker, [
-      'date',
-      'onDateChange',
-      'focused',
-      'onFocusChange',
-    ]),
-  };
+  autoFocus: PropTypes.bool,
+  initialDate: momentPropTypes.momentObj,
 
-  
+  ...omit(DatePicker, ["date", "onDateChange", "focused", "onFocusChange"]),
+};
+
 const defaultProps = {
   initialDate: moment().add(1, "days"),
   placeholder: "Date",
@@ -40,30 +34,36 @@ class DatePicker extends React.Component {
       date: props.initialDate,
     };
   }
-  onDateChange = (date) => this.setState({ date });
+  onDateChange = (date) => {
+    this.setState({ date });
+    this.props.dispatch({
+      type: "SELECTED_DATE",
+      payload: moment(date).format(dateFormat),
+    }); // add date to state management
+  };
 
   onFocusChange = ({ focused }) => this.setState({ focused });
-  
-  isOutsideRange = day =>
+
+  isOutsideRange = (day) =>
     day.isAfter(moment().add(8, "days")) || day.isBefore(); // allow only next 7 days
   render() {
     const { focused, date } = this.state;
     const props = omit(this.props, ["autoFocus", "initialDate", "dispatch"]);
 
     return (
-    <>
-      <SingleDatePicker
-        {...props}
-        id="date_input"
-        date={date}
-        focused={focused}
-        onDateChange={this.onDateChange}
-        onFocusChange={this.onFocusChange}
-        readOnly={true}        
-        isOutsideRange={this.isOutsideRange}
-      />
-      <span className="icon" />
-    </>
+      <>
+        <SingleDatePicker
+          {...props}
+          id="date_input"
+          date={date}
+          focused={focused}
+          onDateChange={this.onDateChange}
+          onFocusChange={this.onFocusChange}
+          readOnly={true}
+          isOutsideRange={this.isOutsideRange}
+        />
+        <span className="icon" />
+      </>
     );
   }
 }

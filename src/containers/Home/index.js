@@ -23,6 +23,11 @@ const initialState = {
     isFetching: false,
     data: [],
   },
+  selected: {
+    product: null,
+    location: [],
+    date: null,
+  },
 };
 
 function reducer(state, action) {
@@ -62,6 +67,39 @@ function reducer(state, action) {
       return {
         ...state,
         ...{ locations: { isFetching: false, status: action.payload } },
+      };
+    case "SELECT_PRODUCT":
+      return {
+        ...state,
+        ...{
+          selected: {
+            product: action.payload,
+            date: state.selected.date,
+            location: state.selected.location,
+          },
+        },
+      };
+    case "SELECTED_DATE":
+      return {
+        ...state,
+        ...{
+          selected: {
+            product: state.selected.product,
+            date: action.payload,
+            location: state.selected.location,
+          },
+        },
+      };
+    case "SELECT_LOCATION":
+      return {
+        ...state,
+        ...{
+          selected: {
+            product: state.selected.product,
+            date: state.selected.date,
+            location: [...state.selected.location, action.payload],
+          },
+        },
       };
     default:
       throw new Error();
@@ -117,7 +155,9 @@ function Home() {
           </Col>
           <Col md={8}>
             <Card className="result-card">
-              <ResultTable />
+              <ResourceContext.Provider value={{ state, dispatch }}>
+                <ResultTable />
+              </ResourceContext.Provider>
               <Row className="m-layout">
                 <Col md={12} xs={9} className="m-col-left">
                   <TotalResults />

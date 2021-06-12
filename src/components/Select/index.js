@@ -9,8 +9,13 @@ import "../../styles/select.scss";
 
 function Select(props) {
   const [open, setOpen] = useState(false);
-  const [selected, setselected] = useState("");
+  const [selected, setSelected] = useState("");
+
   const toggle = () => setOpen(!open);
+  const handleClickItem = (val) => {
+    setSelected(val.name);
+    props.dispatch({ type: "SELECT_PRODUCT", payload: val }); // add product to global state
+  }
   const { products, dispatch } = props;
   return (
     <ButtonDropdown className="select-layout" isOpen={open} toggle={toggle}>
@@ -20,7 +25,7 @@ function Select(props) {
       <DropdownMenu>
         {products.data ? (
           products.data.map((item, index) => (
-            <DropdownItem onClick={() => setselected(item.name)} key={index}>
+            <DropdownItem onClick={() => handleClickItem(item)} key={index}>
               {item.name}
             </DropdownItem>
           ))
