@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Popover, PopoverHeader, PopoverBody } from "reactstrap";
+import { calculatePrice } from "../../utils/helper";
 
 import flag from "../../assets/icons/placeholder.png";
+
 import "../../styles/map-marker.scss";
-import { calculatePrice } from "../../utils/helper";
+
 function MapMarker(props) {
   const [popoverOpen, setPopoverOpen] = useState(false);
 

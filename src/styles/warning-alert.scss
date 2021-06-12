@@ -1,0 +1,11 @@
+.alert-layout{
+    display: flex;
+    justify-content: space-between;
+    .warning-close{
+        background: transparent;
+        border: 0;
+    }
+    p{
+        margin: 0;
+    }
+}

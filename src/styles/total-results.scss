@@ -2,12 +2,17 @@
 
 .total-result-card{
   .result-item{
-    display: flex;
+    display: flex;    
     p{
-      flex: 1;
       font-weight: 500;
       color: $primary-dark-color;
       font-size: large;
+    }
+    .label{
+      flex: 1;
+    }
+    .value{
+      flex: 6;
     }
   }
 }

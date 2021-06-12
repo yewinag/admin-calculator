@@ -10,6 +10,8 @@ import { Container, Row, Col, Button, Card } from "reactstrap";
 import "../../styles/home.scss";
 import axios from "axios";
 import { API_URL } from "../../constants";
+import WarningAlert from "../../components/WarningAlert";
+import WarningWrapper from "../../components/WarningWrapper";
 
 export const ResourceContext = React.createContext(reducer);
 
@@ -169,6 +171,9 @@ function Home() {
     <div className="home">
       <Header />
       <Container className="pt-5">
+        <ResourceContext.Provider value={{ state }}>
+          <WarningWrapper />
+        </ResourceContext.Provider>
         <Row>
           <Col md={4}>
             <Card className="form-card">
@@ -184,7 +189,7 @@ function Home() {
               </ResourceContext.Provider>
               <Row className="m-layout">
                 <Col md={12} xs={9} className="m-col-left">
-                  <ResourceContext.Provider value={{state}}>
+                  <ResourceContext.Provider value={{ state }}>
                     <TotalResults />
                   </ResourceContext.Provider>
                 </Col>

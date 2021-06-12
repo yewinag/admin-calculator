@@ -35,9 +35,11 @@ function LocationTable() {
             </thead>
             <tbody>
               {selectedLocationList.data.length > 0 &&
-                selectedLocationList.data.map((item, index) => (
-                  <LocationItem dispatch={dispatch} item={item} key={index} />
-                ))}
+              !selectedLocationList.data[0].hasOwnProperty("isErr")
+                ? selectedLocationList.data.map((item, index) => (
+                    <LocationItem dispatch={dispatch} item={item} key={index} />
+                  ))
+                : null}
             </tbody>
           </Table>
         </Col>
@@ -49,7 +51,7 @@ function LocationTable() {
           dispatch={dispatch}
           toggle={toggle}
         />
-      </Modal>
+      </Modal>      
     </>
   );
 }
