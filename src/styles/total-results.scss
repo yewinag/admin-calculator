@@ -1,3 +1,13 @@
-.result-card{
-    // border: 0;
+@import "./index.scss";
+
+@media only screen and (max-width: 991px) {
+  .total-result-card {
+    background: $primary-bg-color;
+    padding: 10px 20px;
+    border: 1px solid $primary-gray-color;
+    p{
+        font-weight: 500;
+        color: $primary-dark-color;
+    }
+  }
 }

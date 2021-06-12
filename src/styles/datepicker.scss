@@ -2,7 +2,7 @@
 
 .SingleDatePicker {
     width: 100%;
-    border: 1px solid #ececec;    
+    border: 1px solid $primary-gray-color;    
     position: relative;
   .SingleDatePickerInput {
     border: 0;
@@ -16,7 +16,7 @@
         padding: 0 10px;
         padding: 6px 8px;
         font-size: 14px;
-        color: $gray-color;
+        color: $primary-text-color;
       }
       .DateInput_input__focused {
         border-bottom: 0;

@@ -4,7 +4,7 @@ import '../../styles/total-results.scss';
 
 function TotalResults() {
   return (
-    <div>
+    <div className="total-result-card">
         <p>Costs</p>
         <p>Units</p>
     </div>

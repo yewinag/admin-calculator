@@ -1,4 +1,6 @@
+@import './index.scss';
+
 .select-btn{
-    background-color: #ffffff;
-    color: #848484;
+    background-color: $primary-bg-color;
+    color: $primary-text-color;
 }

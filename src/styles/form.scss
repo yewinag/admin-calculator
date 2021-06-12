@@ -4,9 +4,9 @@
     .select-btn{
         font-size: 14px;
         border-radius: 0;
-        border-color: $gray-dark-color;
+        border-color: $primary-text-color;
         text-align: left;
-        font-weight: $font-weight-regular;
+        font-weight: 500;
         position: relative;
         .icon{
             background-image: url('../assets/icons/down-arrow.png');
@@ -24,13 +24,13 @@
         display: none;
     }
     .select-btn:hover{
-        background-color: $white-color;
-        color: $gray-color;
-        font-weight: $font-weight-regular;
+        background-color: $primary-bg-color;
+        color: $primary-text-color;
+        font-weight: 500;
     }
     .select-btn:active{
-        background-color: $white-color;
-        color: $gray-color;
+        background-color: $primary-bg-color;
+        color: $primary-text-color;
         box-shadow: none;
     }    
 }

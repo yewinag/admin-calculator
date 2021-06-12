@@ -2,22 +2,10 @@ $primary-color: #FA770C;
 $primary-light-color: #FED99D;
 $primary-dark-color: #D75A08;
 $secondary-color: #62B15E;
-$white-color: #FFFFFF;
-$white-light-color: #F8F8F8;
-$gray-color: #848484;
-$gray-dark-color: #ececec;
-$font-weight-regular: 100;
-$font-weight-medium: 500;
-$font-weight-semi-bold: 600;
-$font-weight-bold: 700;
-$font-weight-extra-bold: 800;
-$section-padding: 50px 0;
-$text-center: center;
-$text-uppercase: uppercase;
-$border-radius-10: 10px;
-$transition-style:0.5s all ease-in;
-$shadow-style:0px 0px 5px 0px rgba(0, 0, 0, 0.58);
-$hover-shadow:0px 3px 15px 0px rgba(0, 0, 0, 0.438);
+$primary-bg-color: #FFFFFF;
+$primary-text-color: #848484;
+$primary-gray-color: #ececec;
+$primary-dark-color: #000000;
 
 @import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
 body{
@@ -26,16 +14,20 @@ body{
     height: 100%;
     font-family: Helvetica,Arial,sans-serif;
     font-size: 14px;
-    color: $gray-color;
-    background: $white-color;
+    color: $primary-text-color;
+    background: $primary-bg-color;
+    a{
+        text-decoration: none;
+        color: $primary-gray-color;
+    }
 }
 .form-card{
-    background-color: $white-color;
+    background-color: $primary-bg-color;
     padding: 10px;
     height: 100%;
 }
 .result-card{
-    background-color: $white-color;
+    background-color: $primary-bg-color;
     padding: 10px;
     height: 100%
 }

@@ -5,10 +5,11 @@ import {
   NavbarToggler,
   NavbarBrand,
   Nav,
-  NavItem,
-  NavLink
+  NavItem
 } from "reactstrap";
+import { Link } from 'react-router-dom'
 import '../../styles/header.scss';
+
 import logo from '../../assets/icons/logo.png';
 
 function Header(props) {
@@ -29,10 +30,10 @@ function Header(props) {
           <Collapse isOpen={isOpen} navbar className="nav-list">
             <Nav className="mr-auto" navbar>
               <NavItem>
-                <NavLink href="/sign-up">Sign Up</NavLink>
+                <Link to="/sign-up">Sign Up</Link>
               </NavItem>
               <NavItem>
-                <NavLink href="/register">Register</NavLink>
+                <Link to="/login">Login</Link>
               </NavItem>
             </Nav>
           </Collapse>

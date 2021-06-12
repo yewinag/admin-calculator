@@ -1,7 +1,7 @@
 @import "./index.scss";
 
 .home{
-    background-color:#fff;
+    background-color:$primary-bg-color;
     .submit-btn{
         border-radius: 0;
         background: $secondary-color;
