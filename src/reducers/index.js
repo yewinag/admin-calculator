@@ -1,66 +1,42 @@
-export const initialState = {
-    products: {
-      isFetching: false,
-      data: [],
-      status: null,
-    },
-    locations: {
-      isFetching: false,
-      data: [],
-    },
-    selected: {
-      product: null,
-      location: null,
-      date: null,
-    },
-    selectedLocationList: {
-      data: [],
-    },
-    cart: {
-      isSubmitting: false,
-      data: null,
-    },
-  };
+import * as types from '../constants/actionTypes';
 
-export  const reducer = (state, action) => {
+const reducer = (state, action) => {
     switch (action.type) {
-      case "FETCH_PRODUCT":
-        return { ...state, ...{ products: { isFetching: true } } };
-      case "RECEIVE_PRODUCT":
+      case types.FETCH_PRODUCT:
+        return { ...state, ...{ products: { isFetching: true, data: [] } } };
+      case types.RECEIVE_PRODUCT:
         return {
           ...state,
           ...{
             products: {
               isFetching: false,
-              data: action.payload.data,
-              status: action.payload.status,
+              data: action.payload.data
             },
           },
         };
-      case "RECEIVE_PRODUCT_ERR":
+      case types.RECEIVE_PRODUCT_ERR:
         return {
           ...state,
-          ...{ products: { isFetching: false, status: action.payload } },
+          ...{ products: { isFetching: false } },
         };
-      case "FETCH_LOCATIONS":
-        return { ...state, ...{ locations: { isFetching: true } } };
-      case "RECEIVE_LOCATIONS":
+      case types.FETCH_LOCATIONS:
+        return { ...state, ...{ locations: { isFetching: true, data: [] } } };
+      case types.RECEIVE_LOCATIONS:
         return {
           ...state,
           ...{
             locations: {
               isFetching: false,
-              data: action.payload.data,
-              status: action.payload.status,
+              data: action.payload.data
             },
           },
         };
-      case "RECEIVE_LOCATIONS_ERR":
+      case types.RECEIVE_LOCATIONS_ERR:
         return {
           ...state,
-          ...{ locations: { isFetching: false, status: action.payload } },
+          ...{ locations: { isFetching: false, } },
         };
-      case "SELECT_PRODUCT":
+      case types.SELECT_PRODUCT:
         return {
           ...state,
           ...{
@@ -76,7 +52,7 @@ export  const reducer = (state, action) => {
             },
           },
         };
-      case "SELECTED_DATE":
+      case types.SELECTED_DATE:
         return {
           ...state,
           ...{
@@ -87,7 +63,7 @@ export  const reducer = (state, action) => {
             },
           },
         };
-      case "SELECT_LOCATION":
+      case types.SELECT_LOCATION:
         return {
           ...state,
           ...{
@@ -98,7 +74,7 @@ export  const reducer = (state, action) => {
             },
           },
         };
-      case "ADD_LOCATION_ITEM":
+      case types.ADD_LOCATION_ITEM:
         return {
           ...state,
           ...{
@@ -107,7 +83,7 @@ export  const reducer = (state, action) => {
             },
           },
         };
-      case "CLEAR_LOCATION_ITEM":
+      case types.CLEAR_LOCATION_ITEM:
         return {
           ...state,
           ...{
@@ -116,7 +92,7 @@ export  const reducer = (state, action) => {
             },
           },
         };
-      case "REMOVE_SELECTED_LOCATION_ITEM":
+      case types.REMOVE_SELECTED_LOCATION_ITEM:
         const res = state.selectedLocationList.data.filter(
           (item) => item.id != action.payload
         );
@@ -128,7 +104,7 @@ export  const reducer = (state, action) => {
             },
           },
         };
-      case "SUBMITTING":
+      case types.SUBMITTING:
         return {
           ...state,
           ...{
@@ -137,7 +113,7 @@ export  const reducer = (state, action) => {
             },
           },
         };
-      case "SENT_CART":
+      case types.SENT_CART:
         return {
           ...state,
           ...{
@@ -163,3 +139,4 @@ export  const reducer = (state, action) => {
         throw new Error();
     }
   }
+export default reducer;

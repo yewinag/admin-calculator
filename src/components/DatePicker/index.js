@@ -10,7 +10,7 @@ import "react-dates/lib/css/_datepicker.css";
 import "react-dates/initialize";
 import "../../styles/datepicker.scss";
 import { dateFormat } from "../../constants";
-
+import * as types from '../../constants/actionTypes';
 const propTypes = {
   autoFocus: PropTypes.bool,
   initialDate: momentPropTypes.momentObj,
@@ -37,7 +37,7 @@ class DatePicker extends React.Component {
   onDateChange = (date) => {
     this.setState({ date });
     this.props.dispatch({
-      type: "SELECTED_DATE",
+      type: types.SELECTED_DATE,
       payload: moment(date).format(dateFormat),
     }); // add date to state management
   };

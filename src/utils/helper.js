@@ -49,6 +49,7 @@ export const calculatePrice = (product, location, date) => {
 export const getTotalCost = (locationList) => {
   let total = 0;
   locationList.map((item) => {
+    if(!item.total_cost) return total;
     total += item.total_cost;
   });
   return total;
@@ -56,6 +57,7 @@ export const getTotalCost = (locationList) => {
 export const getTotalUnit = (locationList) => {
   let total = 0;
   locationList.map((item) => {
+    if(!item.total_unit) return total;
     total += item.total_unit;
   });
   return total;

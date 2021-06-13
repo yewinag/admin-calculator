@@ -1,17 +1,42 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { Table, Row, Col, Button, Modal } from "reactstrap";
 import Map from "../Map";
+import axios from "axios";
 import { ResourceContext } from "../../containers/Home";
 import LocationItem from "../LocationItem";
+import { API_URL } from "../../constants";
+import * as types from '../../constants/actionTypes';
 import "../../styles/result-table.scss";
 
 function LocationTable() {
   const [modal, setModal] = useState(false);
-  const resources = useContext(ResourceContext);
   const toggle = () => setModal(!modal);
+  
+  const {
+    state: {locations, selected, selectedLocationList},    
+    dispatch,
+  } = useContext(ResourceContext);
 
-  const { locations, selected, selectedLocationList } = resources.state;
-  const { dispatch } = resources;
+  const handleFetchLocation = () => {
+    dispatch({ type: types.FETCH_LOCATIONS });
+    const fetchLocations = async () => {
+      try {
+        const res = await axios.get(`${API_URL}/locations`);
+        dispatch({
+          type: types.RECEIVE_LOCATIONS,
+          payload: { data: res.data },
+        });
+      } catch (error) {
+        dispatch({ type: types.RECEIVE_LOCATIONS_ERR, payload: error });
+      }
+    };
+    fetchLocations();
+  }
+
+  const handleShowMap = () => {
+    toggle();
+    handleFetchLocation();
+  }
 
   return (
     <>
@@ -27,7 +52,7 @@ function LocationTable() {
                 <th>Units</th>
                 <th>Cost</th>
                 <th className="header-action">
-                  <Button onClick={toggle} className="add-btn" size="sm">
+                  <Button onClick={handleShowMap} className="add-btn" size="sm">
                     ADD
                   </Button>
                 </th>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Popover, PopoverHeader, PopoverBody } from "reactstrap";
 import { calculatePrice } from "../../utils/helper";
+import * as types from '../../constants/actionTypes';
 
 import flag from "../../assets/icons/placeholder.png";
 
@@ -14,9 +15,9 @@ function MapMarker(props) {
   const { location, selected } = props;
 
   const handleAddLocation = () => {
-    props.dispatch({ type: "SELECT_LOCATION", payload: location }); // add current location item
+    props.dispatch({ type: types.SELECT_LOCATION, payload: location }); // add current location item
     props.dispatch({
-      type: "ADD_LOCATION_ITEM",
+      type: types.ADD_LOCATION_ITEM,
       payload: calculatePrice(
         selected.product,
         location, // add current location

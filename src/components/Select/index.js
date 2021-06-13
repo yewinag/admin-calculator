@@ -4,8 +4,9 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-  Spinner,
 } from "reactstrap";
+import * as types from "../../constants/actionTypes";
+
 import "../../styles/select.scss";
 
 function Select(props) {
@@ -15,17 +16,17 @@ function Select(props) {
   const toggle = () => setOpen(!open);
   const handleClickItem = (val) => {
     setSelected(val.name);
-    props.dispatch({ type: "SELECT_PRODUCT", payload: val }); // add product to global state
+    props.dispatch({ type: types.SELECT_PRODUCT, payload: val }); // add product to global state
   };
-  const { products } = props;
+  const { products, selectedProduct } = props;
   return (
     <ButtonDropdown className="select-layout" isOpen={open} toggle={toggle}>
       <DropdownToggle className="select-btn" caret>
-        {selected ? selected : "Select Product"}         
+        {selected ? selected : "Select Product"}
         <span className="icon" />
       </DropdownToggle>
       <DropdownMenu>
-        {products.data ? (
+        {products && products.data ? (
           products.data.map((item, index) => (
             <DropdownItem onClick={() => handleClickItem(item)} key={index}>
               {item.name}

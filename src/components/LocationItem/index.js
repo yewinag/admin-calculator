@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Button } from "reactstrap";
+import * as types from "../../constants/actionTypes";
 
 function LocationItem(props) {
   return (
@@ -11,7 +12,7 @@ function LocationItem(props) {
         <Button
           onClick={() =>
             props.dispatch({
-              type: "REMOVE_SELECTED_LOCATION_ITEM",
+              type: types.REMOVE_SELECTED_LOCATION_ITEM,
               payload: props.item.id,
             })
           }
