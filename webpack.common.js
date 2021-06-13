@@ -6,15 +6,18 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
-    chunkFilename: "[id].js",
+    chunkFilename: "[name].js",
     publicPath: "",
-  },
-  devServer: {
-    port: 3000,
   },
   resolve: {
     extensions: [".js", ".jsx"],
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: __dirname + "/public/index.html",
+      filename: "index.html",
+    }),
+  ],
   module: {
     rules: [
       {
@@ -46,20 +49,14 @@ module.exports = {
         test: /\.(png|jpe?g|gif)$/i,
         use: [
           {
-            loader: 'file-loader',
+            loader: "file-loader",
             options: {
               name: "[name].[ext]",
               outputPath: "src/assets/icons",
             },
           },
-        ]
-      }
-    ]
+        ],
+      },
+    ],
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: __dirname + "/public/index.html",
-      filename: "index.html",
-    }),
-  ],
 };

@@ -5,9 +5,9 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import Home from "./containers/Home";
-import SignUp from "./containers/SingUp";
-import Login from "./containers/Login";
+import Home from "./containers/Home/Loadable";
+import SignUp from "./containers/SingUp/Loadable";
+import Login from "./containers/Login/Loadable";
 import "regenerator-runtime/runtime.js"; // import global regenerator runtime for async
 
 import "bootstrap/dist/css/bootstrap.min.css";
