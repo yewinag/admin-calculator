@@ -12,10 +12,7 @@ import '../../styles/header.scss';
 
 import logo from '../../assets/icons/logo.png';
 
-function Header(props) {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggle = () => setIsOpen(!isOpen);
+function Header() {
   
   return (
     <div className="container-fluid header">      
@@ -26,8 +23,8 @@ function Header(props) {
           </NavbarBrand>
         </div>
         <div className="col-md-6">
-          <NavbarToggler onClick={toggle} />
-          <Collapse isOpen={isOpen} navbar className="nav-list">
+          <NavbarToggler className="toggler"/>
+          <Collapse navbar className="nav-list">
             <Nav className="mr-auto" navbar>
               <NavItem>
                 <Link to="/sign-up">Sign Up</Link>

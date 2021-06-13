@@ -1,0 +1,12 @@
+.success-alert{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    p{
+        margin: 0;
+    }
+    .alert-close{
+        background: transparent;
+        border: 0;
+    }
+}

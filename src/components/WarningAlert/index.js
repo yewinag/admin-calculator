@@ -4,7 +4,10 @@ import '../../styles/warning-alert.scss';
 const WarningAlert = (props) => {
   const [visible, setVisible] = useState(true);
 
-  const onDismiss = () => setVisible(false);
+  const onDismiss = () => {
+    props.dispatch({type:'CLEAR_LOCATION_ITEM'})
+    setVisible(false);
+  } 
 
   return (
     <Alert className="alert-layout" color="warning" isOpen={visible} >

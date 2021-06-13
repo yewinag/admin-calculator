@@ -4,11 +4,26 @@
     .add-btn{
         background: transparent;
         color: #848484;
-        border: 1px solid $primary-gray-color;
+        border: 1px solid $primary-dark-color;
         padding: 0px 8px;
         border-radius: 0;
     }
-    
+    .add-btn:focus{
+        background: transparent;
+        color: #848484;
+        border: 1px solid $primary-dark-color;
+        padding: 0px 8px;
+        border-radius: 0;
+        box-shadow: none !important;
+    }
+    .add-btn:hover{
+        background: transparent;
+        color: #848484;
+        border: 1px solid $primary-gray-color;
+        padding: 0px 8px;
+        border-radius: 0;
+        box-shadow: none !important;
+    }
 }
 .close-btn{
     border: 0;

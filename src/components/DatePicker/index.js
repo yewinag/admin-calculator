@@ -19,7 +19,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  initialDate: moment(),
+  initialDate: null,
   placeholder: "Date",
   orientation: HORIZONTAL_ORIENTATION,
   numberOfMonths: 1,

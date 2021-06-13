@@ -9,11 +9,11 @@ function TotalResults() {
   return (
     <div className="total-result-card">
       <div className="result-item">
-        <p className="label">Units</p>
+        <p className="label">Total Units</p>
         <p className="value">{getTotalUnit(selectedLocationList.data)}</p>
       </div>
       <div className="result-item">
-        <p className="label">Costs</p>
+        <p className="label">Total Costs</p>
         <p className="value">{getTotalCost(selectedLocationList.data)}</p>
       </div>
     </div>

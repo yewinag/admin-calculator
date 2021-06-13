@@ -1,6 +1,13 @@
 @import './index.scss';
 
 .select-btn{
-    background-color: $primary-bg-color;
-    color: $primary-text-color;
+    background-color: $primary-bg-color !important;
+    color: $primary-text-color !important;
+    border: 1px solid #ececec;
+}
+.select-btn:focus{
+    box-shadow: none !important;
+}
+.dropdown-menu.show{
+    width: 100%;
 }

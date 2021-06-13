@@ -4,14 +4,15 @@ import Header from "../../components/Header";
 import Form from "../../components/Form";
 import LocationTable from "../../components/LocationTable";
 import TotalResults from "../../components/TotalResults";
-
-import { Container, Row, Col, Button, Card } from "reactstrap";
+import SuccessAlert from "../../components/SuccessAlert";
+import { Container, Row, Col, Button, Card, Alert } from "reactstrap";
 
 import "../../styles/home.scss";
 import axios from "axios";
 import { API_URL } from "../../constants";
-import WarningAlert from "../../components/WarningAlert";
 import WarningWrapper from "../../components/WarningWrapper";
+import moment from "moment";
+import { getLocationList } from "../../utils/helper";
 
 export const ResourceContext = React.createContext(reducer);
 
@@ -32,6 +33,10 @@ const initialState = {
   },
   selectedLocationList: {
     data: [],
+  },
+  cart: {
+    isSubmitting: false,
+    data: null,
   },
 };
 
@@ -80,7 +85,12 @@ function reducer(state, action) {
           selected: {
             product: action.payload,
             date: state.selected.date,
-            location: state.selected.location,
+            location: null,
+          },
+        },
+        ...{
+          selectedLocationList: {
+            data: [],
           },
         },
       };
@@ -115,6 +125,15 @@ function reducer(state, action) {
           },
         },
       };
+    case "CLEAR_LOCATION_ITEM":
+      return {
+        ...state,
+        ...{
+          selectedLocationList: {
+            data: [],
+          },
+        },
+      };
     case "REMOVE_SELECTED_LOCATION_ITEM":
       const res = state.selectedLocationList.data.filter(
         (item) => item.id != action.payload
@@ -124,6 +143,37 @@ function reducer(state, action) {
         ...{
           selectedLocationList: {
             data: res,
+          },
+        },
+      };
+    case "SUBMITTING":
+      return {
+        ...state,
+        ...{
+          cart: {
+            isSubmitting: true,
+          },
+        },
+      };
+    case "SENT_CART":
+      return {
+        ...state,
+        ...{
+          cart: {
+            isSubmitting: false,
+            data: action.payload,
+          },
+        },
+        ...{
+          selected: {
+            product: null,
+            date: null,
+            location: null,
+          },
+        },
+        ...{
+          selectedLocationList: {
+            data: [],
           },
         },
       };
@@ -167,41 +217,67 @@ function Home() {
     fetchLocations();
   }, ["locations"]);
 
+  const handleSubmit = () => {
+    dispatch({ type: "SUBMITTING" });
+    const payload = {
+      date: moment().format("YYYY MMMM DD"),
+      product: state.selected.product && parseInt(state.selected.product.id),
+      locations: getLocationList(state.selectedLocationList.data),
+    };
+    const submitCart = async () => {
+      try {
+        const res = await axios({
+          method: "post",
+          url: `${API_URL}/cart`,
+          data: payload,
+        });
+        dispatch({ type: "SENT_CART", payload: res });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    submitCart();
+  };
   return (
     <div className="home">
-      <Header />
-      <Container className="pt-5">
-        <ResourceContext.Provider value={{ state }}>
+      <ResourceContext.Provider value={{ state, dispatch }}>
+        <Header />
+        <Container className="pt-5">
           <WarningWrapper />
-        </ResourceContext.Provider>
-        <Row>
-          <Col md={4}>
-            <Card className="form-card">
-              <ResourceContext.Provider value={{ state, dispatch }}>
+          <SuccessAlert />
+          <Row>
+            <Col md={4}>
+              <Card className="form-card">
                 <Form />
-              </ResourceContext.Provider>
-            </Card>
-          </Col>
-          <Col md={8}>
-            <Card className="result-card">
-              <ResourceContext.Provider value={{ state, dispatch }}>
+              </Card>
+            </Col>
+            <Col md={8}>
+              <Card className="result-card">
                 <LocationTable />
-              </ResourceContext.Provider>
-              <Row className="m-layout">
-                <Col md={12} xs={9} className="m-col-left">
-                  <ResourceContext.Provider value={{ state }}>
+                <Row className="m-layout">
+                  <Col md={12} xs={9} className="m-col-left">
                     <TotalResults />
-                  </ResourceContext.Provider>
-                </Col>
-                <Col md={12} xs={3} className="m-col-right">
-                  <Button className="submit-btn">Submit</Button>
-                </Col>
-              </Row>
-            </Card>
-          </Col>
-        </Row>
-      </Container>
-      <Footer />
+                  </Col>
+                  <Col md={12} xs={3} className="m-col-right">
+                    <Button
+                      onClick={() => handleSubmit()}
+                      className="submit-btn"
+                      disabled={
+                        !state.selected.product ||
+                        !state.selected.date ||
+                        state.selectedLocationList.data.length == 0
+                      }
+                    >
+                      {state.cart.isSubmitting ? "loading..." : "Submit"}
+                    </Button>
+                  </Col>
+                </Row>
+              </Card>
+            </Col>
+          </Row>
+        </Container>
+        <Footer />
+      </ResourceContext.Provider>
     </div>
   );
 }

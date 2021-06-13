@@ -11,7 +11,7 @@ function WarningWrapper(props) {
       {selectedLocationList.data.length > 0 &&
       selectedLocationList.data[0].hasOwnProperty("isErr")
         ? selectedLocationList.data.map((item, index) => (
-            <WarningAlert key={index} item={item} />
+            <WarningAlert key={index} item={item} dispatch={resources.dispatch}/>
           ))
         : null}
     </div>

@@ -4,6 +4,7 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
+  Spinner,
 } from "reactstrap";
 import "../../styles/select.scss";
 
@@ -15,12 +16,13 @@ function Select(props) {
   const handleClickItem = (val) => {
     setSelected(val.name);
     props.dispatch({ type: "SELECT_PRODUCT", payload: val }); // add product to global state
-  }
-  const { products, dispatch } = props;
+  };
+  const { products } = props;
   return (
     <ButtonDropdown className="select-layout" isOpen={open} toggle={toggle}>
       <DropdownToggle className="select-btn" caret>
-        {selected ? selected : "Select Product"} <span className="icon" />
+        {selected ? selected : "Select Product"}         
+        <span className="icon" />
       </DropdownToggle>
       <DropdownMenu>
         {products.data ? (
@@ -30,7 +32,7 @@ function Select(props) {
             </DropdownItem>
           ))
         ) : (
-          <DropdownItem disabled />
+          <span>loading...</span>
         )}
       </DropdownMenu>
     </ButtonDropdown>
