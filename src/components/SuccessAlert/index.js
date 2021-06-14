@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import { ResourceContext } from "../../containers/Home";
 import { Alert, Button } from "reactstrap";
 import "../../styles/success-alert.scss";

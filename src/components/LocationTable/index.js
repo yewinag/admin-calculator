@@ -5,15 +5,15 @@ import axios from "axios";
 import { ResourceContext } from "../../containers/Home";
 import LocationItem from "../LocationItem";
 import { API_URL } from "../../constants";
-import * as types from '../../constants/actionTypes';
-import "../../styles/result-table.scss";
+import * as types from "../../constants/actionTypes";
+import "../../styles/location-table.scss";
 
 function LocationTable() {
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
-  
+
   const {
-    state: {locations, selected, selectedLocationList},    
+    state: { locations, selected, selectedLocationList },
     dispatch,
   } = useContext(ResourceContext);
 
@@ -31,12 +31,12 @@ function LocationTable() {
       }
     };
     fetchLocations();
-  }
+  };
 
   const handleShowMap = () => {
     toggle();
     handleFetchLocation();
-  }
+  };
 
   return (
     <>
@@ -76,7 +76,7 @@ function LocationTable() {
           dispatch={dispatch}
           toggle={toggle}
         />
-      </Modal>      
+      </Modal>
     </>
   );
 }

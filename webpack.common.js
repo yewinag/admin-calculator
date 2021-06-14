@@ -1,6 +1,7 @@
 const webpack = require("webpack")
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+var dotenv = require('dotenv').config({path: __dirname + '/.env'});
 
 module.exports = {
   entry: "./src/index.js",
@@ -18,11 +19,14 @@ module.exports = {
       template: __dirname + "/public/index.html",
       filename: "index.html",
     }),
+    new webpack.DefinePlugin({
+      "process.env": dotenv.parsed
+    })
   ],
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         loader: "babel-loader",
         exclude: /node_modules/,
       },
