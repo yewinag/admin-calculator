@@ -10,7 +10,6 @@ Enzyme.configure({ adapter: new Adapter() });
 describe('Header component', () => {    
     it('should ', () => {
         const wrapper = shallow(<Header />)                           
-        expect(wrapper.exists()).toBe(true);                
-        
+        expect(wrapper.exists()).toBe(true);                        
     });
 })

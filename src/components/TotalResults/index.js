@@ -4,8 +4,9 @@ import { getTotalCost, getTotalUnit } from "../../utils/helper";
 import "../../styles/total-results.scss";
 
 function TotalResults() {
-  const resources = useContext(ResourceContext);
-  const { selectedLocationList } = resources.state;
+  const {
+    state: { selectedLocationList },
+  } = useContext(ResourceContext);
   return (
     <div className="total-result-card">
       <div className="result-item">

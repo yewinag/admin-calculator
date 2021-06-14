@@ -11,3 +11,7 @@
 .dropdown-menu.show{
     width: 100%;
 }
+.dropdown-item:active{
+    background-color: $primary-bg-color;
+    color: $primary-text-color;
+}

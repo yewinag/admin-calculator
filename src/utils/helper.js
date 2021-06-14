@@ -1,8 +1,17 @@
 import moment from "moment";
+
+export const dayCount = (date) => {
+  return moment(date).format("DD") - moment().format("DD"); // difference of today and selected day
+};
+export const day_production_units = (product, date) => {
+  const real_production_day =
+    dayCount(date) > product.max_production.length
+      ? product.max_production.length
+      : dayCount(date); // production_per_day depen on user selected date
+  return product.max_production[real_production_day]; // return production units due to selected date
+};
 export const calculatePrice = (product, location, date) => {
-  var error = {};
-  let selected_day = 0;
-  let product_per_day = 0;
+  let error = {};
   let new_location_item = {};
   // inital
   if (product == null) {
@@ -13,34 +22,25 @@ export const calculatePrice = (product, location, date) => {
     error = { isErr: true, msg: "You need to select valid date" };
     return error;
   }
-  if (location.length <= 0) {
+  if (location == null) {
     error = { isErr: true, msg: "You need to pick the locations" };
     return error;
   }
 
   if (!!product && !!location && !!date) {
-    selected_day = moment(date).format("DD"); // user selected day
-    const today = moment().format("DD"); // today
-    const dayCount = selected_day - today; // difference of today and selected day
-    const real_production_day =
-      dayCount > product.max_production.length
-        ? product.max_production.length
-        : dayCount; // production_per_day depen on user selected date
-
-    product_per_day = product.max_production[real_production_day];
     new_location_item["name"] = location.name; // set name to new obj
     new_location_item["id"] = location.id; // set id to new obj
-    if (location.max_dist < product_per_day) {
+    if (location.max_dist < day_production_units(product, date)) {
       // max distribute of location less than product_per_day amount use max
       new_location_item["total_unit"] = location.max_dist;
       new_location_item["total_cost"] =
         location.max_dist * product.price_per_unit + // max_product * price
-        real_production_day * location.fee; // distribute days (3) * daily fee
+        dayCount(date) * location.fee; // distribute days (3) * daily fee
     } else {
-      new_location_item["total_dist"] = product_per_day;
+      new_location_item["total_dist"] = day_production_units(product, date);
       new_location_item["total_cost"] =
-        product_per_day * product.price_per_unit +
-        real_production_day * location.fee;
+        day_production_units(product, date) * product.price_per_unit +
+        dayCount(date) * location.fee;
     }
   }
   return new_location_item; // return new location and price and unit item
@@ -49,6 +49,7 @@ export const calculatePrice = (product, location, date) => {
 export const getTotalCost = (locationList) => {
   let total = 0;
   locationList.map((item) => {
+    if(!item.total_cost) return total;
     total += item.total_cost;
   });
   return total;
@@ -56,9 +57,9 @@ export const getTotalCost = (locationList) => {
 export const getTotalUnit = (locationList) => {
   let total = 0;
   locationList.map((item) => {
+    if(!item.total_unit) return total;
     total += item.total_unit;
   });
-  total;
   return total;
 };
 export const getLocationList = (locations) => {
