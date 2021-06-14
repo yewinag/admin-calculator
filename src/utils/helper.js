@@ -5,9 +5,10 @@ export const dayCount = (date) => {
 };
 export const day_production_units = (product, date) => {
   const real_production_day =
-    dayCount(date) > product.max_production.length
-      ? product.max_production.length
+    dayCount(date) > Object.keys(product.max_production).length
+      ? Object.keys(product.max_production).length
       : dayCount(date); // production_per_day depen on user selected date
+      
   return product.max_production[real_production_day]; // return production units due to selected date
 };
 export const calculatePrice = (product, location, date) => {
@@ -23,7 +24,7 @@ export const calculatePrice = (product, location, date) => {
     return error;
   }
   if (location == null) {
-    error = { isErr: true, msg: "You need to pick the locations" };
+    error = { isErr: true, msg: "You need to pick the location" };
     return error;
   }
 
