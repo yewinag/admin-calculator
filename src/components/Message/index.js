@@ -14,16 +14,16 @@ function Message() {
   const onDismissErr = () => setErrVisible(false);
   return (
     <>
-      {!!cart.data && (
+      {!!cart && (
         <Alert isOpen={visible} color="success" className="success-alert">
-          <p>{cart.data && cart.data.statusText}</p>
+          <p>{cart && cart.statusText}</p>
           <Button className="alert-close" onClick={() => onDismiss()} close />
         </Alert>
       )}
-      {!!selectedLocationList.data.length > 0 &&
-      selectedLocationList.data[0].hasOwnProperty("isErr") ? (
+      {!!selectedLocationList.length > 0 &&
+      selectedLocationList[0].hasOwnProperty("isErr") ? (
         <>
-          {selectedLocationList.data.map((item, index) => (
+          {selectedLocationList.map((item, index) => (
             <Alert key={index} isOpen={isErrVisible} color="warning" className="success-alert">
               <p>{item.msg}</p>
               <Button

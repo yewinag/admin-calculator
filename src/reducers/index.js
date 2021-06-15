@@ -1,142 +1,74 @@
-import * as types from '../constants/actionTypes';
+import * as types from "../constants/actionTypes";
 
 const reducer = (state, action) => {
-    switch (action.type) {
-      case types.FETCH_PRODUCT:
-        return { ...state, ...{ products: { isFetching: true, data: [] } } };
-      case types.RECEIVE_PRODUCT:
-        return {
-          ...state,
-          ...{
-            products: {
-              isFetching: false,
-              data: action.payload.data
-            },
-          },
-        };
-      case types.RECEIVE_PRODUCT_ERR:
-        return {
-          ...state,
-          ...{ products: { isFetching: false } },
-        };
-      case types.FETCH_LOCATIONS:
-        return { ...state, ...{ locations: { isFetching: true, data: [] } } };
-      case types.RECEIVE_LOCATIONS:
-        return {
-          ...state,
-          ...{
-            locations: {
-              isFetching: false,
-              data: action.payload.data
-            },
-          },
-        };
-      case types.RECEIVE_LOCATIONS_ERR:
-        return {
-          ...state,
-          ...{ locations: { isFetching: false, } },
-        };
-      case types.SELECT_PRODUCT:
-        return {
-          ...state,
-          ...{
-            selected: {
-              product: action.payload,
-              date: state.selected.date,
-              location: null,
-            },
-          },
-          ...{
-            selectedLocationList: {
-              data: [],
-            },
-          },
-        };
-      case types.SELECTED_DATE:
-        return {
-          ...state,
-          ...{
-            selected: {
-              product: state.selected.product,
-              date: action.payload,
-              location: state.selected.location,
-            },
-          },
-        };
-      case types.SELECT_LOCATION:
-        return {
-          ...state,
-          ...{
-            selected: {
-              product: state.selected.product,
-              date: state.selected.date,
-              location: action.payload,
-            },
-          },
-        };
-      case types.ADD_LOCATION_ITEM:
-        return {
-          ...state,
-          ...{
-            selectedLocationList: {
-              data: [...state.selectedLocationList.data, action.payload],
-            },
-          },
-        };
-      case types.CLEAR_LOCATION_ITEM:
-        return {
-          ...state,
-          ...{
-            selectedLocationList: {
-              data: [],
-            },
-          },
-        };
-      case types.REMOVE_SELECTED_LOCATION_ITEM:
-        const res = state.selectedLocationList.data.filter(
-          (item) => item.id != action.payload
-        );
-        return {
-          ...state,
-          ...{
-            selectedLocationList: {
-              data: res,
-            },
-          },
-        };
-      case types.SUBMITTING:
-        return {
-          ...state,
-          ...{
-            cart: {
-              isSubmitting: true,
-            },
-          },
-        };
-      case types.SENT_CART:
-        return {
-          ...state,
-          ...{
-            cart: {
-              isSubmitting: false,
-              data: action.payload,
-            },
-          },
-          ...{
-            selected: {
-              product: null,
-              date: null,
-              location: null,
-            },
-          },
-          ...{
-            selectedLocationList: {
-              data: [],
-            },
-          },
-        };
-      default:
-        throw new Error();
-    }
+  switch (action.type) {
+    case types.FETCH_PRODUCT:
+      return { ...state, ...{ products: action.payload } };
+    case types.FETCH_LOCATIONS:
+      return { ...state, ...{ locations: action.payload } };
+    case types.SELECT_PRODUCT:
+      return {
+        ...state,
+        ...{
+          selectedProduct: action.payload,
+        },
+        ...{
+          selectedLocationList: [],
+        },
+      };
+    case types.SELECTED_DATE:
+      return {
+        ...state,
+        ...{
+          selectedDate: action.payload,
+        },
+      };
+    case types.SELECT_LOCATION:
+      return {
+        ...state,
+        ...{
+          selectedLocation: action.payload,
+        },
+      };
+    case types.ADD_LOCATION_ITEM:
+      return {
+        ...state,
+        ...{
+          selectedLocationList: [...state.selectedLocationList, action.payload],
+        },
+      };
+    case types.CLEAR_LOCATION_ITEM:
+      return {
+        ...state,
+        ...{
+          selectedLocationList: [],
+        },
+      };
+    case types.REMOVE_LOCATION_ITEM:
+      const res = state.selectedLocationList.filter(
+        (item) => item.id != action.payload
+      );
+      return {
+        ...state,
+        ...{
+          selectedLocationList: res,
+        },
+      };
+    case types.SENT_CART:
+      return {
+        ...state,
+        ...{
+          cart: action.payload,
+        },
+        ...{ selectedProduct: null },
+        ...{ selectedDate: null },
+        ...{ selectedLocation: null },
+        ...{
+          selectedLocationList: [],
+        },
+      };
+    default:
+      throw new Error();
   }
+};
 export default reducer;

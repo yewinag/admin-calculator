@@ -26,8 +26,8 @@ function Select(props) {
         <span className="icon" />
       </DropdownToggle>
       <DropdownMenu>
-        {products && products.data ? (
-          products.data.map((item, index) => (
+        {!!products ? (
+          products.map((item, index) => (
             <DropdownItem onClick={() => handleClickItem(item)} key={index}>
               {item.name}
             </DropdownItem>

@@ -1,25 +1,24 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import moment from "moment";
 import { Button } from "reactstrap";
 import axios from "axios";
 import { ResourceContext } from "../../containers/Home";
 import { getLocationList } from "../../utils/helper";
 import { API_URL } from "../../constants";
-import * as types from '../../constants/actionTypes';
-import '../../styles/submit-button.scss';
+import * as types from "../../constants/actionTypes";
+import "../../styles/submit-button.scss";
 function SubmitButton() {
-  const {
-    state: {selected, cart, selectedLocationList},    
-    dispatch,
-  } = useContext(ResourceContext);
+  const [isSubmit, submittingCart] = useState(false)
+  const { state: { selectedProduct, selectedDate, selectedLocationList }, dispatch } =
+    useContext(ResourceContext);
 
   const handleSubmit = () => {
-    dispatch({ type: types.SUBMITTING });
     const payload = {
       date: moment().format("YYYY MMMM DD"),
-      product: selected.product && parseInt(selected.product.id),
-      locations: getLocationList(selectedLocationList.data),
+      product: selectedProduct && parseInt(selectedProduct.id),
+      locations: getLocationList(selectedLocationList),
     };
+    submittingCart(true)
     const submitCart = async () => {
       try {
         const res = await axios({
@@ -28,6 +27,7 @@ function SubmitButton() {
           data: payload,
         });
         dispatch({ type: types.SENT_CART, payload: res });
+        submittingCart(false)
       } catch (error) {
         console.log(error);
       }
@@ -39,12 +39,10 @@ function SubmitButton() {
       onClick={() => handleSubmit()}
       className="submit-btn"
       disabled={
-        !selected.product ||
-        !selected.date ||
-        selectedLocationList.data.length == 0
+        !selectedProduct || !selectedDate || selectedLocationList.length == 0
       }
     >
-      {cart.isSubmitting ? "loading..." : "Submit"}      
+      {isSubmit ? "loading..." : "Submit"}
     </Button>
   );
 }
