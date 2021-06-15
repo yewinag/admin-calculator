@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import GoogleMapReact from "google-map-react";
-import { ResourceContext } from "../../containers/Home";
+import ResourceContext from '../../context';
 import { API_KEY } from "../../constants";
 import MapMarker from "../MapMarker";
 

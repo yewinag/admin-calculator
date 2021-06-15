@@ -2,11 +2,12 @@ import React, { useContext, useState } from "react";
 import moment from "moment";
 import { Button } from "reactstrap";
 import axios from "axios";
-import { ResourceContext } from "../../containers/Home";
+import ResourceContext from '../../context';
 import { getLocationList } from "../../utils/helper";
 import { API_URL } from "../../constants";
 import * as types from "../../constants/actionTypes";
 import "../../styles/submit-button.scss";
+
 function SubmitButton() {
   const [isSubmit, submittingCart] = useState(false)
   const { state: { selectedProduct, selectedDate, selectedLocationList }, dispatch } =

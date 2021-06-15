@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { ResourceContext } from "../../containers/Home";
+import ResourceContext from '../../context';
 import { Alert, Button } from "reactstrap";
 import "../../styles/success-alert.scss";
 
