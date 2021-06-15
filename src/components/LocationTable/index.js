@@ -39,9 +39,11 @@ function LocationTable() {
 
   return (
     <>
-      <Row>
+      <Row className={"mb-5"}>
         <Col md={2}>
-          <p>Locations</p>
+          <div className="table">
+            <p>Locations</p>
+          </div>
         </Col>
         <Col md={10}>
           <Table>

@@ -75,7 +75,7 @@ function Home() {
                   <Col md={12} xs={9} className="m-col-left">
                     <TotalResults />
                   </Col>
-                  <Col md={12} xs={3} className="m-col-right">
+                  <Col md={12} xs={3} className="m-col-right pt-3">
                     <SubmitButton />
                   </Col>
                 </Row>

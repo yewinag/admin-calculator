@@ -11,23 +11,8 @@ export const day_production_units = (product, date) => {
       
   return product.max_production[real_production_day]; // return production units due to selected date
 };
-export const calculatePrice = (product, location, date) => {
-  let error = {};
+export const calculatePrice = (product, location, date) => {  
   let new_location_item = {};
-  // inital
-  if (product == null) {
-    error = { isErr: true, msg: "You need to select product" };
-    return error;
-  }
-  if (date == null) {
-    error = { isErr: true, msg: "You need to select valid date" };
-    return error;
-  }
-  if (location == null) {
-    error = { isErr: true, msg: "You need to pick the location" };
-    return error;
-  }
-
   if (!!product && !!location && !!date) {
     new_location_item["name"] = location.name; // set name to new obj
     new_location_item["id"] = location.id; // set id to new obj
@@ -47,18 +32,37 @@ export const calculatePrice = (product, location, date) => {
   return new_location_item; // return new location and price and unit item
 };
 
+export const isError = (product, location, date) => product == null || location == null || date == null;
+
+export const isErrorMsg = (product, location, date) => {
+  let error = {};
+  if (product == null) {
+    error = { msg: "You need to select product" };
+    return error;
+  }
+  if (date == null) {
+    error = { msg: "You need to select valid date" };
+    return error;
+  }
+  if (location == null) {
+    error = { msg: "You need to pick the location" };
+    return error;
+  }
+  return error;
+}
+
 export const getTotalCost = (locationList) => {
   let total = 0;
+  if(locationList.length == 0) return null;
   locationList.map((item) => {
-    if(!item.total_cost) return total;
     total += item.total_cost;
   });
   return total;
 };
 export const getTotalUnit = (locationList) => {
   let total = 0;
+  if(locationList.length == 0) return null;
   locationList.map((item) => {
-    if(!item.total_unit) return total;
     total += item.total_unit;
   });
   return total;

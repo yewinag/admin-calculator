@@ -1,6 +1,6 @@
 @import './index.scss';
 .header-action{
-    width: 0;
+    width: 0;    
     .add-btn{
         background: transparent;
         color: #848484;
@@ -29,4 +29,8 @@
     border: 0;
     margin: 0;
     background: transparent;
+}
+p{
+    margin: 0;
+    padding-top: 10px;
 }

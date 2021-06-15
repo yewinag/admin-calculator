@@ -1,17 +1,23 @@
 import React, { useContext, useState } from "react";
-import ResourceContext from '../../context';
+import ResourceContext from "../../context";
 import { Alert, Button } from "reactstrap";
+import * as types from "../../constants/actionTypes";
 import "../../styles/message.scss";
 
 function Message() {
   const {
-    state: { cart, selectedLocationList },
+    state: { cart, error },
+    dispatch,
   } = useContext(ResourceContext);
 
   const [visible, setVisible] = useState(true);
   const [isErrVisible, setErrVisible] = useState(true);
   const onDismiss = () => setVisible(false);
   const onDismissErr = () => setErrVisible(false);
+  const handleClearError = () => {
+    onDismissErr();
+    dispatch({ type: types.REMOVE_ERROR_MSG });
+  };
   return (
     <>
       {!!cart && (
@@ -20,21 +26,25 @@ function Message() {
           <Button className="alert-close" onClick={() => onDismiss()} close />
         </Alert>
       )}
-      {!!selectedLocationList.length > 0 &&
-      selectedLocationList[0].hasOwnProperty("isErr") ? (
+      {!!error.length > 0 && (
         <>
-          {selectedLocationList.map((item, index) => (
-            <Alert key={index} isOpen={isErrVisible} color="warning" className="success-alert">
+          {error.map((item, index) => (
+            <Alert
+              key={index}
+              isOpen={isErrVisible}
+              color="warning"
+              className="success-alert"
+            >
               <p>{item.msg}</p>
               <Button
                 className="alert-close"
-                onClick={() => onDismissErr()}
+                onClick={handleClearError}
                 close
               />
             </Alert>
           ))}
         </>
-      ) : null}
+      )}
     </>
   );
 }
