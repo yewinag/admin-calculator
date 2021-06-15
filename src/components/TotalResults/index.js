@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { ResourceContext } from "../../containers/Home";
+import ResourceContext from '../../context';
 import { getTotalCost, getTotalUnit } from "../../utils/helper";
 import "../../styles/total-results.scss";
 

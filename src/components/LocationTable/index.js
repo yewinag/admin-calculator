@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { Table, Row, Col, Button, Modal } from "reactstrap";
 import Map from "../Map";
 import axios from "axios";
-import { ResourceContext } from "../../containers/Home";
+import ResourceContext from '../../context';
 import LocationItem from "../LocationItem";
 import { API_URL } from "../../constants";
 import * as types from "../../constants/actionTypes";

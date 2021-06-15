@@ -1,7 +1,6 @@
 import React, { useReducer, useEffect } from "react";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
-import Form from "../../components/Form";
 import LocationTable from "../../components/LocationTable";
 import TotalResults from "../../components/TotalResults";
 import Message from "../../components/Message";
@@ -16,8 +15,7 @@ import reducer from "../../reducers";
 import initialState from "../../reducers/initialState";
 import SubmitButton from "../../components/SubmitButton";
 import "../../styles/home.scss";
-
-export const ResourceContext = React.createContext();
+import ResourceContext from '../../context';
 
 function Home() {
   const [state, dispatch] = useReducer(reducer, initialState);

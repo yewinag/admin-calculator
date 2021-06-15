@@ -2,7 +2,7 @@ import React, { useContext, useReducer } from "react";
 import { Row, Col } from "reactstrap";
 import Select from "../Select";
 import DatePicker from "../DatePicker";
-import { ResourceContext } from "../../containers/Home";
+import ResourceContext from '../../context';
 import "../../styles/form.scss";
 function Form() {
   const {
