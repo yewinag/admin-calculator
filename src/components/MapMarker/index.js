@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Popover, PopoverHeader, PopoverBody } from "reactstrap";
 import { calculatePrice } from "../../utils/helper";
-import * as types from '../../constants/actionTypes';
-
+import * as types from "../../constants/actionTypes";
+import { ResourceContext } from "../../containers/Home";
 import flag from "../../assets/icons/placeholder.png";
 
 import "../../styles/map-marker.scss";
@@ -12,20 +12,24 @@ function MapMarker(props) {
 
   const toggle = () => setPopoverOpen(!popoverOpen);
 
-  const { location, selected } = props;
+  const {
+    state: { selectedProduct, selectedDate },
+    dispatch,
+  } = useContext(ResourceContext);
 
   const handleAddLocation = () => {
-    props.dispatch({ type: types.SELECT_LOCATION, payload: location }); // add current location item
-    props.dispatch({
+    dispatch({ type: types.SELECT_LOCATION, payload: location }); // add current location item
+    dispatch({
       type: types.ADD_LOCATION_ITEM,
       payload: calculatePrice(
-        selected.product,
+        selectedProduct,
         location, // add current location
-        selected.date
+        selectedDate
       ),
     }); // push item included total price for each location item
     props.toggle();
   };
+  const { location } = props;
   return (
     <>
       <div id={`popover${location.id}`}>

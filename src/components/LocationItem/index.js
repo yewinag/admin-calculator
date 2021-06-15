@@ -12,7 +12,7 @@ function LocationItem(props) {
         <Button
           onClick={() =>
             props.dispatch({
-              type: types.REMOVE_SELECTED_LOCATION_ITEM,
+              type: types.REMOVE_LOCATION_ITEM,
               payload: props.item.id,
             })
           }

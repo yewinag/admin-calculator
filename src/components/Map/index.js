@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import GoogleMapReact from "google-map-react";
+import { ResourceContext } from "../../containers/Home";
 import { API_KEY } from "../../constants";
 import MapMarker from "../MapMarker";
 
@@ -11,7 +12,10 @@ function Map(props) {
     },
     zoom: 13,
   };
-  const { locations } = props;
+  const {
+    state: { locations },
+    dispatch,
+  } = useContext(ResourceContext);
   return (
     <div style={{ height: "80vh", width: "100%" }}>
       <GoogleMapReact
@@ -19,15 +23,13 @@ function Map(props) {
         defaultCenter={defaultProps.center}
         defaultZoom={defaultProps.zoom}
       >
-        {locations.data.map((location, index) => (
+        {locations.map((location, index) => (
           <MapMarker
             key={index}
             lat={location.lat}
             lng={location.long}
             location={location}
-            dispatch={props.dispatch}
             toggle={props.toggle}
-            selected={props.selected} // selected state from reducer
           />
         ))}
       </GoogleMapReact>

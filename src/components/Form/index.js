@@ -5,7 +5,13 @@ import DatePicker from "../DatePicker";
 import { ResourceContext } from "../../containers/Home";
 import "../../styles/form.scss";
 function Form() {
-  const { state, dispatch } = useContext(ResourceContext);
+  const {
+    products,
+    selectedProduct,
+    selectedLocation,
+    selectedDate,
+    dispatch,
+  } = useContext(ResourceContext);
   return (
     <>
       <Row className="mb-3">
@@ -14,8 +20,10 @@ function Form() {
         </Col>
         <Col md={8}>
           <Select
-            products={state.products}
-            selectedProduct={state.selected}
+            products={products}
+            selectedProduct={selectedProduct}
+            selectedDate={selectedDate}
+            selectedLocation={selectedLocation}
             dispatch={dispatch}
           />
         </Col>
