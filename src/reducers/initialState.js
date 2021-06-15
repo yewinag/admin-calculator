@@ -6,5 +6,6 @@ const initialState = {
     selectedDate: null,
     selectedLocationList: [],
     cart: null,
+    error:[]
   };
   export default initialState;

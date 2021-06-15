@@ -1,24 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   ButtonDropdown,
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
 } from "reactstrap";
+import ResourceContext from "../../context";
 import * as types from "../../constants/actionTypes";
 
 import "../../styles/select.scss";
 
-function Select(props) {
+function Select() {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState("");
-
+  const {
+    state: { products },
+    dispatch,
+  } = useContext(ResourceContext);
   const toggle = () => setOpen(!open);
   const handleClickItem = (val) => {
     setSelected(val.name);
-    props.dispatch({ type: types.SELECT_PRODUCT, payload: val }); // add product to global state
+    dispatch({ type: types.SELECT_PRODUCT, payload: val }); // add product to global state
   };
-  const { products, selectedProduct } = props;
+  
   return (
     <ButtonDropdown className="select-layout" isOpen={open} toggle={toggle}>
       <DropdownToggle className="select-btn" caret>

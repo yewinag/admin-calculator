@@ -1,8 +1,8 @@
 import React, { useContext, useState } from "react";
 import { Popover, PopoverHeader, PopoverBody } from "reactstrap";
-import { calculatePrice } from "../../utils/helper";
+import { calculatePrice, isError, isErrorMsg } from "../../utils/helper";
 import * as types from "../../constants/actionTypes";
-import ResourceContext from '../../context';
+import ResourceContext from "../../context";
 import flag from "../../assets/icons/placeholder.png";
 
 import "../../styles/map-marker.scss";
@@ -18,15 +18,16 @@ function MapMarker(props) {
   } = useContext(ResourceContext);
 
   const handleAddLocation = () => {
-    dispatch({ type: types.SELECT_LOCATION, payload: location }); // add current location item
-    dispatch({
-      type: types.ADD_LOCATION_ITEM,
-      payload: calculatePrice(
-        selectedProduct,
-        location, // add current location
-        selectedDate
-      ),
-    }); // push item included total price for each location item
+    dispatch({ type: types.SELECT_LOCATION, payload: location }); // add current location item        
+    isError(selectedProduct, location, selectedDate)
+      ? dispatch({
+          type: types.ADD_ERROR_MSG,
+          payload: isErrorMsg(selectedProduct, location, selectedDate),
+        })
+      : dispatch({
+          type: types.ADD_LOCATION_ITEM,
+          payload: calculatePrice(selectedProduct, location, selectedDate), // add current location
+        }); // push item included total price for each location item
     props.toggle();
   };
   const { location } = props;

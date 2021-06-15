@@ -1,17 +1,54 @@
 @import './index.scss';
 
-.select-btn{
-    background-color: $primary-bg-color !important;
-    color: $primary-text-color !important;
-    border: 1px solid #ececec;
-}
-.select-btn:focus{
-    box-shadow: none !important;
-}
-.dropdown-menu.show{
+.select-layout{
     width: 100%;
-}
-.dropdown-item:active{
-    background-color: $primary-bg-color;
-    color: $primary-text-color;
+    .select-btn{
+        font-size: 14px;
+        border-radius: 0;
+        border-color: #ececec;
+        text-align: left;
+        font-weight: 100;
+        position: relative;
+        background-color: $primary-bg-color !important;
+        color: $primary-text-color !important;
+        border: 1px solid #ececec;
+        .icon{
+            background-image: url('../assets/icons/down-arrow.png');
+            width: 30px;
+            height: 30px;
+            background-repeat: no-repeat;
+            background-position: center;
+            z-index: 1;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+        }        
+    }
+    .select-btn:focus{
+        box-shadow: none !important;
+    }
+    .dropdown-menu.show{
+        width: 100%;
+    }
+    .dropdown-item{
+        color: $primary-text-color;
+        font-weight: 100;
+    }
+    .dropdown-item:active{
+        background-color: $primary-bg-color;
+        color: $primary-text-color;
+    }
+    .dropdown-toggle::after{
+        display: none;
+    }
+    .select-btn:hover{
+        background-color: $primary-bg-color;
+        color: $primary-text-color;
+        font-weight: 100;
+    }
+    .select-btn:active{
+        background-color: $primary-bg-color;
+        color: $primary-text-color;
+        box-shadow: none;
+    }    
 }

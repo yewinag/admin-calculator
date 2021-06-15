@@ -36,6 +36,9 @@ const reducer = (state, action) => {
         ...{
           selectedLocationList: [...state.selectedLocationList, action.payload],
         },
+        ...{
+          error: [],
+        },
       };
     case types.CLEAR_LOCATION_ITEM:
       return {
@@ -65,6 +68,20 @@ const reducer = (state, action) => {
         ...{ selectedLocation: null },
         ...{
           selectedLocationList: [],
+        },
+      };
+    case types.ADD_ERROR_MSG:
+      return {
+        ...state,
+        ...{
+          error: [...state.error, action.payload],
+        },
+      };
+    case types.REMOVE_ERROR_MSG:
+      return {
+        ...state,
+        ...{
+          error: [],
         },
       };
     default:
