@@ -9,21 +9,19 @@ function Message() {
     state: { cart, error },
     dispatch,
   } = useContext(ResourceContext);
-
-  const [visible, setVisible] = useState(true);
-  const [isErrVisible, setErrVisible] = useState(true);
-  const onDismiss = () => setVisible(false);
-  const onDismissErr = () => setErrVisible(false);
-  const handleClearError = () => {
-    onDismissErr();
+  
+  const handleClearError = () => {    
     dispatch({ type: types.REMOVE_ERROR_MSG });
   };
+  const isOpenAlert = (cart) => !!cart ? true : false;
+  const isOpenMsg = (error) => error.length > 0 ? true : false;
+
   return (
     <>
       {!!cart && (
-        <Alert isOpen={visible} color="success" className="success-alert">
+        <Alert isOpen={isOpenAlert(cart)} color="success" className="success-alert">
           <p>{cart && cart.statusText}</p>
-          <Button className="alert-close" onClick={() => onDismiss()} close />
+          <Button className="alert-close" onClick={() => handleClearError()} close />
         </Alert>
       )}
       {!!error.length > 0 && (
@@ -31,7 +29,7 @@ function Message() {
           {error.map((item, index) => (
             <Alert
               key={index}
-              isOpen={isErrVisible}
+              isOpen={isOpenMsg(error)}
               color="warning"
               className="success-alert"
             >

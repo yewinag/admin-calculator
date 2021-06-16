@@ -52,7 +52,7 @@ function MapMarker(props) {
             <p>{location.max_dist}</p>
           </div>
           <div className="marker-info-layout">
-            <p>Fee: </p>
+            <p>Daily Fee: </p>
             <p>{location.fee}</p>
           </div>
           <div className="marker-info-layout">

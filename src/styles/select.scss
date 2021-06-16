@@ -12,7 +12,16 @@
         background-color: $primary-bg-color !important;
         color: $primary-text-color !important;
         border: 1px solid #ececec;
-              
+        .icon{
+            background-image: url('../assets/icons/down-arrow.png');
+            width: 30px;
+            height: 30px;
+            background-repeat: no-repeat;
+            background-position: center;
+            z-index: 1;
+            position: absolute;
+            right: 0;
+        }        
     }
     .select-btn:focus{
         box-shadow: none !important;

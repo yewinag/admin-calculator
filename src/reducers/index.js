@@ -81,6 +81,9 @@ const reducer = (state, action) => {
       return {
         ...state,
         ...{
+          cart: null
+        },
+        ...{
           error: [],
         },
       };
