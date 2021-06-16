@@ -5,17 +5,16 @@ import {
   NavbarToggler,
   NavbarBrand,
   Nav,
-  NavItem
+  NavItem,
 } from "reactstrap";
-import { Link } from 'react-router-dom'
-import '../../styles/header.scss';
+import { Link } from "react-router-dom";
+import "../../styles/header.scss";
 
-import logo from '../../assets/icons/logo.png';
+import logo from "../../assets/icons/logo.png";
 
 function Header() {
-  
   return (
-    <div className="container-fluid header">      
+    <div className="container-fluid header">
       <Navbar light expand="md">
         <div className="col-md-6">
           <NavbarBrand className="title" href="/">
@@ -23,7 +22,7 @@ function Header() {
           </NavbarBrand>
         </div>
         <div className="col-md-6">
-          <NavbarToggler className="toggler"/>
+          <NavbarToggler className="toggler" />
           <Collapse navbar className="nav-list">
             <Nav className="mr-auto" navbar>
               <NavItem>

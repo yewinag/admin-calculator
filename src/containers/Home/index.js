@@ -1,4 +1,7 @@
 import React, { useReducer, useEffect } from "react";
+import axios from "axios";
+import { Container, Row, Col, Card } from "reactstrap";
+import ResourceContext from '../../context';
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 import LocationTable from "../../components/LocationTable";
@@ -6,16 +9,13 @@ import TotalResults from "../../components/TotalResults";
 import Message from "../../components/Message";
 import Select from "../../components/Select";
 import DatePicker from "../../components/DatePicker";
-import { Container, Row, Col, Card } from "reactstrap";
+import SubmitButton from "../../components/SubmitButton";
 
-import axios from "axios";
 import { API_URL } from "../../constants";
-import * as types from "../../constants/actionTypes";
 import reducer from "../../reducers";
 import initialState from "../../reducers/initialState";
-import SubmitButton from "../../components/SubmitButton";
+import * as types from "../../constants/actionTypes";
 import "../../styles/home.scss";
-import ResourceContext from '../../context';
 
 function Home() {
   const [state, dispatch] = useReducer(reducer, initialState);
