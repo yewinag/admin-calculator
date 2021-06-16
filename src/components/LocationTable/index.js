@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { Table, Row, Col, Button, Modal } from "reactstrap";
 import Map from "../Map";
 import axios from "axios";
-import ResourceContext from '../../context';
+import ResourceContext from "../../context";
 import LocationItem from "../LocationItem";
 import { API_URL } from "../../constants";
 import * as types from "../../constants/actionTypes";
@@ -61,11 +61,9 @@ function LocationTable() {
             </thead>
             <tbody>
               {selectedLocationList.length > 0 &&
-              !selectedLocationList[0].hasOwnProperty("isErr")
-                ? selectedLocationList.map((item, index) => (
-                    <LocationItem dispatch={dispatch} item={item} key={index} />
-                  ))
-                : null}
+                selectedLocationList.map((item, index) => (
+                  <LocationItem dispatch={dispatch} item={item} key={index} />
+                ))}
             </tbody>
           </Table>
         </Col>

@@ -70,13 +70,7 @@ describe("calculate unit and cost", () => {
     expect(calculatePrice(product, location, date).name).not.toBe("Chidlom");
     expect(calculatePrice(product, location, date).total_unit).not.toBe(3000);
     expect(calculatePrice(product, location, date).total_cost).not.toBe(4500);
-  });
-  // check return error => isErr
-  it("should calculate price due to max distribution", () => {
-    expect(calculatePrice(null, location, date).isErr).toBe(true);
-    expect(calculatePrice(product, null, date).isErr).toBe(true);
-    expect(calculatePrice(product, location, null).isErr).toBe(true);
-  });
+  });  
 });
 describe("calculate Total costs", () => {
   it("should return total of user selected items cost", () => {

@@ -22,7 +22,6 @@ function Select() {
     setSelected(val.name);
     dispatch({ type: types.SELECT_PRODUCT, payload: val }); // add product to global state
   };
-  
   return (
     <ButtonDropdown className="select-layout" isOpen={open} toggle={toggle}>
       <DropdownToggle className="select-btn" caret>
