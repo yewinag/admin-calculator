@@ -33,4 +33,10 @@
 p{
     margin: 0;
     padding-top: 10px;
+    color: $primary-text-color;
+}
+tr{
+    th{
+        color: $primary-text-color;
+    }
 }

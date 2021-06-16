@@ -6,7 +6,6 @@ module.exports = {
     "\\.(css|less|scss|sass)$": "identity-obj-proxy"
   },
   transform: {
-    // "\\.js$": "babel-jest",    
     '^.+\\.js?$': 'babel-jest',
   }  
 }; 

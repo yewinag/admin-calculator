@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import ResourceContext from "../../context";
 import { Alert, Button } from "reactstrap";
 import * as types from "../../constants/actionTypes";
