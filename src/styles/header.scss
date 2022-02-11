@@ -1,19 +1,22 @@
 @import './index.scss';
-.header{
-    border-bottom: 1px solid $primary-gray-color;    
-    .title{
-        color: $primary-color;
+.header {
+  border-bottom: 1px solid $primary-gray-color;
+  .title {
+    color: $primary-color;
+    img {
+      width: 46px;
     }
-    .nav-list{
-        float: right;
+  }
+  .nav-list {
+    float: right;
+  }
+  .navbar-nav {
+    .nav-item {
+      padding-left: 10px;
     }
-    .navbar-nav{
-        .nav-item{
-            padding-left: 10px;
-        }
-    }
-    .toggler:focus{
-        box-shadow: none;
-        border: 1px solid $primary-dark-color;
-    }
+  }
+  .toggler:focus {
+    box-shadow: none;
+    border: 1px solid $primary-dark-color;
+  }
 }
